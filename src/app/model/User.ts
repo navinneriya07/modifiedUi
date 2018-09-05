@@ -1,8 +1,10 @@
 export interface User{
     userId?:number,
-    email?:string,
-    password?:string,
     fName?:string,
     lName?:string,
-    role?:string
+    email?:string,
+    password?:string,
+    address?:string,
+    mobilenumber?:string,
+    role?:string[],
 }

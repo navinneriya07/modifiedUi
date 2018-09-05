@@ -23,7 +23,7 @@ export class LoginComponent {
   
   onLogin() {
     this.userLoginDetails.email=this.loginForm.value.email;
-    this.userLoginDetails.email=this.loginForm.value.password;
+    this.userLoginDetails.password=this.loginForm.value.password;
     this.authService.loginUser(this.userLoginDetails).subscribe(
     data => {
       this.data = data;

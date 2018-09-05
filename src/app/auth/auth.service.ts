@@ -6,14 +6,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Observable,of } from 'rxjs';
 import { User } from "../model/User";
+import { ApiMessage } from "../model/ApiMessage";
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Cache-Control': 'no-cache'})
 };
 
-@Injectable({
-    providedIn:"root"
-})
+@Injectable()
 export class AuthService {
    
     constructor(private http: HttpClient,
@@ -21,9 +20,19 @@ export class AuthService {
 
     }
 
+    registerUser(registerUserDetails: User) {
+        return this.http.post<ApiMessage>((environment.apiBaseUrl+'api/login/signUp'),
+                                           registerUserDetails,
+                                           httpOptions);
+    }
+
     loginUser(userLoginDetails: User):Observable<User> {
         return this.http.post<User>((environment.apiBaseUrl+'api/login/validateLogin'), 
-                               userLoginDetails, 
-                               httpOptions);
+                                     userLoginDetails, 
+                                     httpOptions);
+    }
+
+    logoutUser():Observable<ApiMessage>{
+        return this.http.post<ApiMessage>((environment.apiBaseUrl+'api/logout'), httpOptions);
     }
 }
