@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../../auth/auth.service';
 import { Router } from '@angular/router';
-import { AlertService } from '../../alert/alert.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -16,7 +15,7 @@ export class ResetPasswordComponent{
 
   constructor(private authService: AuthService,
     private router: Router,
-    private alertService: AlertService) {}
+    /* private alertService: AlertService */) {}
 
   @ViewChild('myResetPasswordForm') resetForm: NgForm;
 
@@ -24,16 +23,16 @@ export class ResetPasswordComponent{
     var userResetPassDetails = {
       'newPassword' : this.resetForm.value.password
     }
-    this.authService.resetPasswordUser(userResetPassDetails).subscribe(
+    /* this.authService.resetPasswordUser(userResetPassDetails).subscribe(
       data => {
-        this.alertService.success(data.message, true);
+        //this.alertService.success(data.message, true);
       },error => {
           this.error = error;
           if ((error.status === false)){
-            this.alertService.error(error.message, false);
+            //this.alertService.error(error.message, false);
             this.loading = false;
           }
-      });
+      }); */
       this.resetForm.reset();
   }
 }
