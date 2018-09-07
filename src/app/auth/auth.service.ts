@@ -35,4 +35,13 @@ export class AuthService {
     logoutUser():Observable<ApiMessage>{
         return this.http.post<ApiMessage>((environment.apiBaseUrl+'api/logout'), httpOptions);
     }
+
+    forgetPasswordUser(userForgotPassDetails: User) {
+        return this.http.post<ApiMessage>((environment.apiBaseUrl+'api/forgotPassword'), userForgotPassDetails,httpOptions);
+    }
+
+    resetPasswordUser(userResetPassDetails: User){
+        return this.http.post<ApiMessage>((environment.apiBaseUrl+'api/resetPassword'),userResetPassDetails,httpOptions);
+    }
+
 }

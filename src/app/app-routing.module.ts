@@ -25,17 +25,17 @@ const appRoutes: Routes = [
       {
         path:'candidate-registration',
         component:CandidateRegistrationComponent
+      },
+      {
+        path: 'reset-password', 
+        /* canActivate: [AuthGuardGuard], */
+        component: ResetPasswordComponent
       }
     ] 
   },
   { 
     path: 'register', 
     component: RegisterComponent  
-  },
-  {
-    path: 'reset-password', 
-    /* canActivate: [AuthGuardGuard], */
-    component: ResetPasswordComponent
   },
   { 
     path: 'forgot-password', 

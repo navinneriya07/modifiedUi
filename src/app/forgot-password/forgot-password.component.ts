@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
+import { User } from '../model/User';
 
 
 @Component({
@@ -11,8 +12,10 @@ import { Router } from '@angular/router';
 })
 export class ForgotPasswordComponent {
 
+  data:any={};
   error: Object = {};
   loading = false;
+  userForgotPassDetails:User={};
 
   constructor(private authService: AuthService,
     private router: Router,
@@ -21,20 +24,21 @@ export class ForgotPasswordComponent {
   @ViewChild('myRecoverForm') recoverForm: NgForm;
 
   onForgotPassword(){
-    var userForgotPassDetails = {
-      'email' : this.recoverForm.value.email
-    }
-   /*  this.authService.forgetPasswordUser(userForgotPassDetails).subscribe(
+   
+    this.userForgotPassDetails.email= this.recoverForm.value.email;
+    
+    this.authService.forgetPasswordUser(this.userForgotPassDetails).subscribe(
       data => {
-        this.alertService.success(data.message, true);
-        
+       // this.alertService.success(data.message, true);
+       this.data = data;
+       console.log("data :"+data.message);
       },error => {
           this.error = error;
           if ((error.status === false)){
-            this.alertService.error(error.message, false);
+           // this.alertService.error(error.message, false);
             this.loading = false;
           }
-      });*/
+      });
       this.recoverForm.reset();
   } 
 
